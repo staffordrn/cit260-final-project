@@ -1,0 +1,60 @@
+@startuml
+
+class Residence {
+    #bedroom: int { get set }
+    #bathrooms: double { get set }
+    #sqft: int { get set }
+    #purchasePrice: double { get set }
+    #taxes: double { get set }
+    #address: String { get set } - where to put?
+    #interestRate: double { get set }
+    #loanPeriod: int  { get, set }
+    #monthlyPayment { get, set }
+    #rentalIncome { get, set }
+    #PERCENT_DOWN: double {readOnly}
+    #RENT_PER_SQFT: double {readOnly}
+
+    +Residence()
+    +Residence(bedrooms: int, bathrooms: double, sqft: int, purchasePrice: double, taxes: double, address: String)
+
+    +percentageDown(purchasePrice: double): double
+    +pricePerSqFt(purchasePrice: double, sqft: int): double
+    +monthlyPayment(purchasePrice: double, interestRate: double, loanPeriod: double): double
+    +rentalIncome(sqft: int): double
+    +monthlyNetProfit(monthlyPayment, taxes: double, rentalIncome: double): double
+    +toString(): String
+}
+
+class House extends Residence {
+    +House()
+    +House(bedrooms: int, bathrooms: int, sqft: int, purchasePrice: double,  taxes: double, address: String)
+
+    +toString(): String
+}
+
+class Condo extends Residence {
+    -hoaFee: double { get set }
+    -amenities: String
+
+    +Condo()
+    +Condo(hoaFee: double, amenities: String, bedrooms: int, bathrooms: int, sqft: int, purchasePrice: double,  taxes: double, address: String)
+
+    +monthlyNetProfit(hoaFee: double, monthlyPayment, taxes: double, rentalIncome()): double
+    +toString: String
+}
+
+class MultiPlex extends Residence {
+    -units: int { get set }
+    +utilities: double { get set }
+
+    +MultiPlex()
+    +MultiPex(units: int, bedrooms: int, bathrooms: int, sqft: int, purchasePrice: double,  taxes: double, address: String)
+
+    +rentalIncome(units: int, sqft: int): double
+    +monthlyNetProfit(utilities: double, monthlyPayment, taxes: double, rentalIncome()): double
+    +portionRentalIncome(units: int, rentalIncome()): double
+    +toString(): String
+}
+
+realEstateInvestmentTool o-- Residence
+@enduml

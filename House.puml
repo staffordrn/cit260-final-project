@@ -1,0 +1,12 @@
+@startuml
+class House {
+
+-squareFeet: int {get, set}
+-mortgage: double {get, set}
+-rentalProfit: double {get, set}
+-monthlyRent: double {get, set}
+
++MyHouse()
++MyHouse(sqft, price, rent)
+}
+@enduml
