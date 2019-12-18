@@ -1,0 +1,59 @@
+@startuml
+
+class Residence {
+    -address: String { get set }
+    -bedroom: int { get set }
+    -bathrooms: int { get set }
+    -sqft: int { get set }
+    -purchasePrice: double { get set }
+    -taxes: double { get set }
+    -interestRate: double { get set }
+    -percentageDown { get }
+    -rentPerSqFoot: double { get }
+
+    +Residence()
+    +Residence(address: String, bedrooms: int, bathrooms: int, sqft: int, purchasePrice: double, taxes: double)
+
+    +downPayment(): double
+    +pricePerSqFt(): double
+    +monthlyPayment(): double
+    +rentalIncome(): double
+    +monthlyNetProfit(): double
+    +toString(): String
+}
+
+class House extends Residence {
+    -acreage: double { get set }
+
+    +House()
+    +House( address: String, bedrooms: int, \n bathrooms: int, sqft: int, acreage: double, \n purchasePrice: double, taxes: double)
+
+    +monthlyNetProfit(): double
+    +toString(): String
+}
+
+class Condo extends Residence {
+    -hoaFee: double { get set }
+    -amenities: String { get set }
+
+    +Condo()
+    +Condo(address: String, bedrooms: int, \n bathrooms: int, sqft: int, purchasePrice: double, \n taxes: double, hoaFee: double, amenities: String)
+
+    +monthlyNetProfit(): double
+    +toString(): String
+}
+
+class Multiplex extends Residence {
+    -units: int { get set }
+    -utilities: double { get set }
+
+    +Multiplex()
+    +Multiplex(address: String, bedrooms: int, \n bathrooms: int, sqft: int, purchasePrice: double, \n taxes: double, units: int)
+
+    +monthlyNetProfit(): double
+    +toString(): String
+}
+
+realEstateInvestmentTool o-- Residence
+
+@enduml
